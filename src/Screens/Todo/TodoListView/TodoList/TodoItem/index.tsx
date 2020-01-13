@@ -30,7 +30,7 @@ const TodoItem: React.FC<Props> = ({ text, onDelete }) => {
       <Container>
         <Label>{text}</Label>
         <DeleteButton onPress={onDelete}>
-          <Icon source={require('~/Assets/Image/remove.png')}></Icon>
+          <Icon source={require('~/Assets/Images/remove_circle.png')} />
         </DeleteButton>
       </Container>
     </>

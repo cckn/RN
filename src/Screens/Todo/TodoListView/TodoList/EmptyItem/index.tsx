@@ -15,7 +15,7 @@ const EmptyItem: React.FC<Props> = () => {
     <>
       <Container>
         <Label>하단에 "+" 버튼을 눌러 새로운 할 일을 등록하세요.</Label>
-      </Container>{' '}
+      </Container>
     </>
   )
 }
