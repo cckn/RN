@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components/native'
 import Button from '~/Components/Button/Index'
 
@@ -37,24 +37,46 @@ interface Props {
   initValue: number
 }
 
-const Counter = ({ title, initValue }: Props) => {
-  const [count, setCount] = useState<number>(0)
-
-  return (
-    <Container>
-      {title && (
-        <TitleContainer>
-          <TitleLabel>{title}</TitleLabel>
-        </TitleContainer>
-      )}
-      <CountContainer>
-        <CountLabel>{initValue + count}</CountLabel>
-      </CountContainer>
-      <ButtonContainer>
-        <Button iconName="add_circle" onPress={() => setCount(count + 1)} />
-        <Button iconName="remove_circle" onPress={() => setCount(count - 1)} />
-      </ButtonContainer>
-    </Container>
-  )
+interface State {
+  count: number
 }
+
+class Counter extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
+    console.log('constructor')
+
+    this.state = {
+      count: props.initValue,
+    }
+  }
+
+  render() {
+    const { title } = this.props
+    const { count } = this.state
+    return (
+      <Container>
+        {title && (
+          <TitleContainer>
+            <TitleLabel>{title}</TitleLabel>
+          </TitleContainer>
+        )}
+        <CountContainer>
+          <CountLabel>{count}</CountLabel>
+        </CountContainer>
+        <ButtonContainer>
+          <Button
+            iconName="add_circle"
+            onPress={() => this.setState({ count: count + 1 })}
+          />
+          <Button
+            iconName="remove_circle"
+            onPress={() => this.setState({ count: count - 1 })}
+          />
+        </ButtonContainer>
+      </Container>
+    )
+  }
+}
+
 export default Counter
