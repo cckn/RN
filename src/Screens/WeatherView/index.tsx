@@ -67,10 +67,12 @@ const WeatherView: React.FC<Props> = () => {
 
         try {
           const res = await axios.get(reqUrl)
+          const temperature = res.data.main.temp
+          const weather = res.data.weather[0].main
 
           setWeatherInfo({
-            temperature: res.data.main.temp,
-            weather: res.data.weather[0].main,
+            temperature,
+            weather,
             isLoading: true,
           })
         } catch (error) {
