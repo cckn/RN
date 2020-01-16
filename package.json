@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "seticon": "react-native set-icon --path ./src/Assets/Images/app_icon.png"
   },
   "dependencies": {
     "babel-plugin-root-import": "^6.4.1",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/runtime": "^7.6.2",
+    "@bam.tech/react-native-make": "^1.0.3",
     "@react-native-community/eslint-config": "^0.0.5",
     "@types/jest": "^24.0.24",
     "@types/react-native": "^0.60.25",
