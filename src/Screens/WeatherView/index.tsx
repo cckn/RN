@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FlatList, Alert } from 'react-native'
 import Geolocation from 'react-native-geolocation-service'
 
+import axios from 'axios'
 import styled from 'styled-components/native'
 
 const Container = styled.SafeAreaView`
@@ -60,29 +61,23 @@ const WeatherView: React.FC<Props> = () => {
   const getCurrentWeather = () => {
     setWeatherInfo({ isLoading: false })
     Geolocation.getCurrentPosition(
-      (position) => {
+      async (position) => {
         const { latitude, longitude } = position.coords
-        console.log(latitude, longitude, position)
-
         const reqUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
-        console.log(reqUrl)
 
-        fetch(reqUrl)
-          .then((res) => res.json())
-          .then((json) => {
-            console.log(json)
+        try {
+          const res = await axios.get(reqUrl)
 
-            setWeatherInfo({
-              temperature: json.main.temp,
-              weather: json.weather[0].main,
-              isLoading: true,
-            })
+          setWeatherInfo({
+            temperature: res.data.main.temp,
+            weather: res.data.weather[0].main,
+            isLoading: true,
           })
-          .catch((error) => {
-            console.log(error)
-            setWeatherInfo({ isLoading: true })
-            showError('날씨 정보를 가져오는데 실패하였습니다.')
-          })
+        } catch (error) {
+          console.log(error)
+          setWeatherInfo({ isLoading: true })
+          showError('날씨 정보를 가져오는데 실패하였습니다.')
+        }
       },
       (error) => {
         console.log(error)
