@@ -1,8 +1,8 @@
-import React from 'react'
 import AsyncStorage from '@react-native-community/async-storage'
-import { NavigationScreenProp, NavigationState } from 'react-navigation'
-import { ActivityIndicator } from 'react-native'
+import React from 'react'
 import styled from 'styled-components/native'
+import { ActivityIndicator } from 'react-native'
+import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 const Container = styled.View`
   flex: 1;
@@ -15,7 +15,7 @@ interface Props {
   navigation: NavigationScreenProp<NavigationState>
 }
 
-const CheckLogin: React.FC<Props> = ({ navigation }) => {
+const CheckLogin = ({ navigation }: Props) => {
   AsyncStorage.getItem('key')
     .then((value) => {
       if (value) {

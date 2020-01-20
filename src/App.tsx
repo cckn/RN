@@ -4,7 +4,7 @@ import Navigator from '~/Screens/Navigator'
 
 interface Props {}
 
-const App: React.FC<Props> = () => {
+const App = ({}: Props) => {
   return (
     <>
       <StatusBar barStyle="light-content"></StatusBar>
